@@ -1,0 +1,25 @@
+{
+  "name": "fp-ts-intro",
+  "version": "1.0.0",
+  "description": "fp in ts intro dojo",
+  "main": "dist/index.js",
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "compile": "rm -rf dist && tsc",
+    "lint": "eslint 'src/**/*.ts' 'test/**/*.ts'",
+    "lint-fix": "eslint --fix 'src/**/*.ts' 'test/**/*.ts'",
+    "test": "jest --no-cache --verbose"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.7",
+    "jest": "^26.1.0",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.1.2",
+    "typescript": "^3.9.6"
+  },
+  "dependencies": {
+    "fp-ts": "^2.7.0"
+  }
+}
