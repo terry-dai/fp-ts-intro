@@ -135,6 +135,30 @@ const getSmallPet: () => Fish | Bird = {
 }
 ```
 
-##### Types in fp-ts
+##### Union Types in fp-ts
 - [Option](https://gcanti.github.io/fp-ts/modules/Option.ts.html)
 - [Either](https://gcanti.github.io/fp-ts/modules/Either.ts.html)
+
+
+#### Discriminated Unions 
+> Discriminated unions, also known as tagged unions or algebraic data types
+
+https://www.typescriptlang.org/docs/handbook/advanced-types.html#discriminated-unions
+
+To implement this matching we need to provide additional metadata for the interfaces we defined.
+
+```typescript
+interface Red {...}
+interface Yellow {...}
+interface Green {...}
+
+type TrafficLightUnion = Red | Yellow | Green;
+
+export const showTrafficLightUnion: (
+  trafficLight: TrafficLightUnion
+) => string = (trafficLight: TrafficLightUnion) => {
+  switch(...) {
+    ...
+  }
+}
+```

@@ -259,13 +259,18 @@ export class PrintableStudent implements Student, Printable {
     this.name = name;
     this.age = age;
   }
-  print=ToDo
+  print = ToDo;
 }
 
 // Complete the PrintablePerson interface definition above
-// then uncomment the following code and implement the type (interface) 
+// then uncomment the following code and implement the type (interface)
 // export class PrintableStudentIntersection implements PrintablePerson {
 // }
+
+/*
+ * Union Types
+ * First | Second
+ */
 
 interface Dinosaur {
   roar(): void;
@@ -283,3 +288,21 @@ interface Fish {
 
 // How can you gurrantee no one has a pet Dinosaur
 const getSmallPet = ToDo;
+
+/*
+ * Discriminated Unions
+ * ADT
+ *
+ * Implementing the `showTrafficLightUnion` like above `showTrafficLight`
+ * Hint, it requires a bit extra help.
+ */
+
+interface Red {}
+interface Yellow {}
+interface Green {}
+
+type TrafficLightUnion = Red | Yellow | Green;
+
+export const showTrafficLightUnion: (
+  trafficLight: TrafficLightUnion
+) => string = ToDo;
