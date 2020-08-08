@@ -86,14 +86,31 @@ describe('Type exercise', () => {
       it('should show flashing', () => ToDo);
     });
 
+    describe('showTrafficLightUnion', () => {
+      it('should show red', () => {
+        const str = LV2.showTrafficLightUnion(LV2.Red);
+        expect(str).toEqual('The traffic light is red');
+      });
+
+      it('should show yellow', () => {
+        const str = LV2.showTrafficLightUnion(LV2.Yellow);
+        expect(str).toEqual('The traffic light is yellow');
+      });
+
+      it('should show green', () => {
+        const str = LV2.showTrafficLightUnion(LV2.Green);
+        expect(str).toEqual('The traffic light is green');
+      });
+
+      it('should show flashing', () => ToDo);
+    });
   });
 
-
-  describe('Student', ()=>{
-    describe('show', ()=>{
-      it('should print readable message of a student Bob', ()=>{
-        const bob: LV2.PrintablePerson = new LV2.PrintableStudent('Bob', 50);
-        expect(bob.print()).toEqual('Student Bob is 50 years old.')
+  describe('Student', () => {
+    describe('show', () => {
+      it('should print readable message of a student Bob', () => {
+        const bob: LV2.PrintableStudent = new LV2.PrintableStudent('Bob', 50);
+        expect(bob.print()).toEqual('Student Bob is 50 years old.');
       });
     });
   });

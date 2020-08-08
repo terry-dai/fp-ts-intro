@@ -1,4 +1,4 @@
-import { ToDo } from '../utils/predef';
+import { ToDo, assertNever } from '../utils/predef';
 /**
  * These exercises introduce data types and also algebraic data types (ADTs). ADTs are a huge part of typed functional programming.
  * You will also be introduced to a very useful technique for working with ADTs, i.e. pattern matching.
@@ -297,11 +297,15 @@ const getSmallPet = ToDo;
  * Hint, it requires a bit extra help.
  */
 
-interface Red {}
-interface Yellow {}
-interface Green {}
+export interface RedLight {}
+export interface YellowLight {}
+export interface GreenLight {}
 
-type TrafficLightUnion = Red | Yellow | Green;
+export const Red: RedLight = {};
+export const Yellow: YellowLight = {};
+export const Green: GreenLight = {}
+
+type TrafficLightUnion = RedLight | YellowLight | GreenLight;
 
 export const showTrafficLightUnion: (
   trafficLight: TrafficLightUnion
