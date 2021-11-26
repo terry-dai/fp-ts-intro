@@ -7,5 +7,4 @@ describe('Concepts', () => {
       C.runTest();
     });
   });
-
 });

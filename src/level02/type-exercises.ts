@@ -187,7 +187,7 @@ export const showTrafficLightStr: (trafficLight: string) => string = ToDo;
 export enum TrafficLight {
   Red,
   Yellow,
-  Green,
+  Green
 }
 
 /**
@@ -303,7 +303,7 @@ export interface GreenLight {}
 
 export const Red: RedLight = {};
 export const Yellow: YellowLight = {};
-export const Green: GreenLight = {}
+export const Green: GreenLight = {};
 
 type TrafficLightUnion = RedLight | YellowLight | GreenLight;
 

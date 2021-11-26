@@ -1,7 +1,7 @@
 import { ToDo, assertNever } from '../../utils/predef';
 
 /**
- * prependToList(1, [2, 3, 4])
+ * prependToArray(1, [2, 3, 4])
  * > [1, 2, 3, 4]
  *
  * Hint:
@@ -10,12 +10,12 @@ import { ToDo, assertNever } from '../../utils/predef';
  *  - Array.concat
  *    return [x].concat(xs);
  */
-export const prependToList: <A>(x: A, xs: Array<A>) => Array<A> = (x, xs) => {
+export const prependToArray: <A>(x: A, xs: Array<A>) => Array<A> = (x, xs) => {
   return [x, ...xs];
 };
 
 /**
- * appendToList(1, [2, 3, 4]))
+ * appendToArray(1, [2, 3, 4]))
  * > [2, 3, 4, 1]
  * Hint:
  *  - Spread Operator
@@ -26,7 +26,7 @@ export const prependToList: <A>(x: A, xs: Array<A>) => Array<A> = (x, xs) => {
  *    xs.push(x);
  *    return xs;
  */
-export const appendToList: <A>(x: A, xs: Array<A>) => Array<A> = (x, xs) => {
+export const appendToArray: <A>(x: A, xs: Array<A>) => Array<A> = (x, xs) => {
   return [...xs, x];
 };
 
@@ -36,37 +36,48 @@ export const appendToList: <A>(x: A, xs: Array<A>) => Array<A> = (x, xs) => {
  * You can also use spread operator like what we have done previously and then test if the there is a head.
  */
 
-export const isEmptyList_Length: <A>(xs: Array<A>) => boolean = (xs) => {
+export const isEmptyArray_Length: <A>(xs: Array<A>) => boolean = (xs) => {
   return xs.length == 0;
 };
 
-export const isEmptyList: <A>(xs: Array<A>) => boolean = (xs) => {
+export const isEmptyArray: <A>(xs: Array<A>) => boolean = (xs) => {
   const [head, ..._] = xs;
   return !head;
 };
 
+import { match } from 'ts-pattern';
+export const isEmptyArray_TS_Pattern: <A>(xs: Array<A>) => boolean = (xs) => {
+  return match(xs)
+    .with([], () => true)
+    .otherwise(() => false);
+};
+
 /**
- * scala> showListSize(List(1, 2, 3))
- * > "This is a list of size 3"
+ * showArraySize([1, 2, 3])
+ * > "This is a array of size 3"
  *
- * scala> showListSize(List("ABC"))
- * > "This is a list of size 1"
+ * showArraySize(["ABC"])
+ * > "This is a array of size 1"
  *
- * scala> showListSize(Nil)
- * > "This is an empty list"
+ * showArraySize([])
+ * > "This is an empty array"
  *
  * Hint: Use pattern matching, string interpolation and length
  */
-// def showListSize[A](xs: List[A]): String = ???
+export const showArraySize: <A>(xs: Array<A>) => String = (xs) => {
+  return match(xs)
+    .with([], () => 'This is an empty array')
+    .otherwise(() => `This is an array of size ${xs.length}`);
+};
 
 /**
- * Mapping a function over a List
+ * Mapping a function over an array
  *
- * This is typically what you want if the initial List and the resulting List
+ * This is typically what you want if the initial array and the resulting array
  * are of the same size.
  *
- * scala> addNumToEach(10, List(1, 2, 3))
- * > List(11, 12, 13)
+ * addNumToEach(10, [1, 2, 3])
+ * > [11, 12, 13]
  *
  * Hint: Use .map
  **/
@@ -77,7 +88,7 @@ export const addNumToEach_ECMA: (
   return nums.map((x) => x + num);
 };
 
-import * as A from 'fp-ts/Array';
+import * as A from 'fp-ts/lib/Array';
 import { flow, pipe } from 'fp-ts/lib/function';
 export const addNumToEach: (
   num: number,
@@ -87,9 +98,9 @@ export const addNumToEach: (
 };
 
 /**
- * Filter a List
+ * Filter an array
  *
- * This is typically what you want if the size of the resulting List is <= that of the initial.
+ * This is typically what you want if the size of the resulting array is <= that of the initial.
  *
  * Hint: Use .filter and '%' for mod operator
  */
@@ -132,27 +143,27 @@ export const filterEvenFlow: (nums: Array<number>) => Array<number> = flow(
  * Hint: Use .foldLeft
  */
 export const product: (nums: Array<number>) => number = flow(
-  A.foldLeft(()=> 1, (head, tail)=> head * product(tail))
-)
+  A.foldLeft(
+    () => 1,
+    (head: number, tail: Array<number>) => head * product(tail)
+  )
+);
 
 /**
- * scala> min(List(4, 6, 1))
+ * min([4, 6, 1])
  * > 1
  *
- * scala> min(Nil)
+ * min([])
  * > Int.MinValue
  *
  * Hint: Use pattern matching and .foldLeft
  **/
-// def min(nums: List[Int]): Int =
-//   nums match {
-//     case Nil => ???
-//     case head :: tail => ???
-//   }
-
-export const min: (nums: Array<number>)=> number = flow(
-  A.foldLeft(() => Infinity, (head, tail)=> {
-    const t = min(tail);
-    return head < t ? head : t;
-  })
-)
+export const min: (nums: Array<number>) => number = flow(
+  A.foldLeft(
+    () => Infinity,
+    (head: number, tail: Array<number>) => {
+      const t = min(tail);
+      return head < t ? head : t;
+    }
+  )
+);

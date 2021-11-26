@@ -81,9 +81,6 @@ export const timesTwoIfEven: (x: number) => number = ToDo;
  */
 export const showNumber: (x: number) => string = ToDo;
 
-
-
-
 /**
  * Tuples
  *
